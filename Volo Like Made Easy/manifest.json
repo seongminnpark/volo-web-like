@@ -1,0 +1,29 @@
+// manifest.json
+
+{
+    "manifest_version": 2,
+
+    "name":"Volo Like Made Easy", 
+    "description": "친구 여행기 라이크 눌러주기 귀찮을 때 쓰세요.",
+    "version": "0.1",
+
+    "icons": { "16": "icon.png",
+           "48": "icon.png",
+          "128": "icon.png" },
+
+    "background": {
+       "scripts": ["scripts/background.js"],
+       "persistent": false
+    },
+
+    "permissions": [
+        "declarativeContent"
+    ],
+
+    "page_action": {
+        "default_icon": "icon.png",
+        "default_title": "Volo Like Made Easy",
+        "default_popup": "templates/popup.html"
+    }
+
+}
