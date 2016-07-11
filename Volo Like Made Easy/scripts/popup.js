@@ -14,13 +14,13 @@ function init() {
     // Set up onclick for like.
     var like_button = document.getElementById("VLME-like-button");
     like_button.onclick = function() {
-        like_button_pressed();
+        like_button_pressed(true);
     }
 
     // Set up onclick for unlike.
     var unlike_button = document.getElementById("VLME-unlike-button");
     unlike_button.onclick = function() {
-        unlike_button_pressed();
+        like_button_pressed(false);
     }
 }
 
@@ -31,20 +31,15 @@ function toggle_select_all(previous_value) {
     });
 }
 
-function like_button_pressed() {
+function like_button_pressed(is_like) {
     var selected_celltypes = get_selected_celltypes();
 
-    for (i = 0; i < selected_celltypes.length; i++) {
-        like_cell(selected_celltypes[i]);
-    }
-}
-
-function unlike_button_pressed() {
-    var selected_celltypes = get_selected_celltypes();
-
-    for (i = 0; i < selected_celltypes.length; i++) {
-        unlike_cell(selected_celltypes[i]);
-    }
+    chrome.tabs.executeScript({
+            code: 'var selected_celltypes = "' + selected_celltypes.toString() + 
+                    '"; var is_like = ' + is_like + ';'
+        }, function() {
+            chrome.tabs.executeScript({file: 'scripts/like.js'});
+    }); 
 }
 
 function get_selected_celltypes() {
@@ -59,22 +54,4 @@ function get_selected_celltypes() {
     });
 
     return selected_types;
-}
-
-function like_cell(type_id) {
-    chrome.tabs.executeScript({
-            code: 'var cell_class = "' + type_id + '";'
-        }, function() {
-            chrome.tabs.executeScript({file: 'scripts/like.js'});
-    }); 
-}
-
-function unlike_cell(type_id) {
-    var cell_class = type_id.replace('VLME-','');
-    
-    chrome.tabs.executeScript({
-            code: 'var cell_class = "' + cell_class + '";'
-        }, function() {
-            chrome.tabs.executeScript({file: 'scripts/unlike.js'});
-    });    
 }
