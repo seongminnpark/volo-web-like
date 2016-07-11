@@ -2,6 +2,7 @@
 
 function like_selected() {
     selected_celltypes_array = selected_celltypes.split(',');
+
     for (i = 0; i < selected_celltypes_array.length; i++) {
         like_class(selected_celltypes_array[i]);
     }
@@ -12,8 +13,8 @@ function like_class(cell_class) {
 
     var toggle_mode = is_like ? "like" : "like on";  
     
-    for (i = 0; i < cells_to_like.length; i++) {
-        var cell_info = get_child_with_class(cells_to_like[i], "c-info");
+    for (j = 0; j < cells_to_like.length; j++) {
+        var cell_info = get_child_with_class(cells_to_like[j], "c-info");
 
         if (cell_info != null) {
             var heart_button = get_child_with_class(cell_info, toggle_mode);
