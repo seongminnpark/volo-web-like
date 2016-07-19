@@ -8,7 +8,7 @@ chrome.runtime.onInstalled.addListener(function() {
             {
                 conditions: [
                     new chrome.declarativeContent.PageStateMatcher({
-                        pageUrl: { urlMatches: 'https://.*.withvolo.com/trip/*' },
+                        pageUrl: { urlMatches: 'https://*withvolo.com/trip/*'},
                     })
                 ],
 

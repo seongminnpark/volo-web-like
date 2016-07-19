@@ -1,10 +1,14 @@
 // like.js
 
 function like_selected() {
-    selected_celltypes_array = selected_celltypes.split(',');
+    logged_in = !document.getElementById("header-joinus") && !document.getElementById("side-joinus");
 
-    for (i = 0; i < selected_celltypes_array.length; i++) {
-        like_class(selected_celltypes_array[i]);
+    if (logged_in) {
+        selected_celltypes_array = selected_celltypes.split(',');
+
+        for (i = 0; i < selected_celltypes_array.length; i++) {
+            like_class(selected_celltypes_array[i]);
+        }
     }
 }
 
